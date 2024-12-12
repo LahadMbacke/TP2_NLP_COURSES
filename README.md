@@ -38,20 +38,15 @@ L'équipe de l'Université de Montréal a utilisé une approche supervisée :
     - Mesure des performances en termes de rappel, précision et F-mesure sur un corpus test.
 
 #### Forces
-1. **Alignement multilingue :**
-    - Permet une meilleure généralisation et des comparaisons entre langues.
-    - Base solide pour des analyses ultérieures, même si seules les données françaises ont été utilisées.
 2. **Approche centrée sur les principaux partis :**
     - Réduction de la complexité en se concentrant sur les groupes avec des exemples suffisants.
-3. **Méthode reproductible :**
-    - Utilisation de caractéristiques simples et d’algorithmes classiques pour assurer transparence et reproductibilité.
+
 
 #### Faiblesses
 1. **Dépendance au volume de données :**
     - Performances faibles pour les partis moins représentés (**ELDR** et **Verts/ALE**).
 2. **Simplicité des caractéristiques :**
     - Manque de profondeur pour capturer les nuances linguistiques et contextuelles.
-    - Absence de techniques avancées comme les embeddings (Word2Vec, BERT).
 3. **Conflits idéologiques et ambiguïtés :**
     - Confusions fréquentes entre partis proches (é.g., **PSE** et **GUE-NGL**, ou **PPE-DE** et **ELDR**).
 
@@ -65,43 +60,30 @@ L'équipe de l'Université de Montréal a utilisé une approche supervisée :
 - **Nombre de thèmes :** Optimisé pour refléter les différents partis.
 - **Alpha, Beta :** Ajustés pour favoriser la spécificité des thèmes.
 
-### Résultats
-- L’ajout des thèmes a amélioré la précision pour certains partis comme **Verts/ALE**.
-- Comparée à la baseline TF-IDF, cette méthode a montré des gains modérés.
+
 
 ## Variations et optimisations
 
 ### Approches explorées
 1. **Optimisation des hyper-paramètres LDA :** Amélioration de la séparation thématique.
 2. **Pré-traitement :** 
-    - Utilisation de la lemmatisation pour réduire la variabilité lexicale.
+    -On a pas utiliser un pretraitement car ca degrade les results
 
 ### Analyse des performances
-- Les variantes ont montré des améliorations marginales sur certains partis.
-- Les gains restent limités pour les partis avec peu de données (**ELDR**).
+
 
 ## Tableau comparatif des performances
 
-| **Parti politique** | **Meilleur résultat DEFT 2009 (Rappel / Précision)** | **Performance annotateurs humains (Rappel / Précision)** |
-|----------------------|-----------------------------------------------------|---------------------------------------------------------|
-| **ELDR**            | 23,1 % / 23,6 %                                     | 33 % / 42 %                                             |
-| **GUE-NGL**         | 39,3 % / 34,5 %                                     | 42 % / 44 %                                             |
-| **PPE-DE**          | 49,8 % / 45,2 %                                     | 57 % / 40 %                                             |
-| **PSE**             | 39,4 % / 37,0 %                                     | 63 % / 48 %                                             |
-| **Verts/ALE**       | 24,3 % / 25,5 %                                     | 29 % / 33 %                                             |
+| **Parti politique** | **Meilleur résultat DEFT 2009 (Rappel / Précision)** | **Performance annotateurs humains (Rappel / Précision)** | **Baseline TF-IDF (Rappel / Précision)** | **LDA (Rappel / Précision)** |
+|----------------------|-----------------------------------------------------|---------------------------------------------------------|-----------------------------------------|-----------------------------|
+| **ELDR**            | 23,1 % / 23,6 %                                     | 33 % / 42 %                                             | 67 % / 78 %                             | 8 % / 15 %                 |
+| **GUE-NGL**         | 39,3 % / 34,5 %                                     | 42 % / 44 %                                             | 80 % / 70 %                             | 58 % / 21 %                |
+| **PPE-DE**          | 49,8 % / 45,2 %                                     | 57 % / 40 %                                             | 74 % / 75 %                             | 21 % / 43 %                |
+| **PSE**             | 39,4 % / 37,0 %                                     | 63 % / 48 %                                             | 72 % / 69 %                             | 15 % / 35 %                |
+| **Verts/ALE**       | 24,3 % / 25,5 %                                     | 29 % / 33 %                                             | 68 % / 73 %                             | 32 % / 15 %                |
 
-## Interprétation des résultats
+## Interprétation des résultats(a faire)
 
-1. **Difficulté globale :**
-    - Les résultats automatiques restent faibles pour tous les partis.
-    - Les performances humaines montrent aussi des limites, notamment pour les petits partis.
-
-2. **Influence des données disponibles :**
-    - Les partis dominants (**PPE-DE**, **PSE**) bénéficient d’une meilleure précision grâce à un volume d’exemples plus important.
-
-3. **Sources d’erreurs :**
-    - Confusions entre partis proches idéologiquement ou dans leur discours.
-    - Difficulté à interpréter les interventions ambiguës ou génériques.
 
 ## Conclusion
 
