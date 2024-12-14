@@ -73,13 +73,22 @@ L'équipe de l'Université de Montréal a utilisé une approche supervisée :
 
 ## Tableau comparatif des performances
 
-| **Parti politique** | **Meilleur résultat DEFT 2009 (Rappel / Précision)** | **Performance annotateurs humains (Rappel / Précision)** | **Baseline TF-IDF (Rappel / Précision)** | **LDA (Rappel / Précision)** |
-|----------------------|-----------------------------------------------------|---------------------------------------------------------|-----------------------------------------|-----------------------------|
-| **ELDR**            | 23,1 % / 23,6 %                                     | 33 % / 42 %                                             | 67 % / 78 %                             | 8 % / 15 %                 |
-| **GUE-NGL**         | 39,3 % / 34,5 %                                     | 42 % / 44 %                                             | 80 % / 70 %                             | 58 % / 21 %                |
-| **PPE-DE**          | 49,8 % / 45,2 %                                     | 57 % / 40 %                                             | 74 % / 75 %                             | 21 % / 43 %                |
-| **PSE**             | 39,4 % / 37,0 %                                     | 63 % / 48 %                                             | 72 % / 69 %                             | 15 % / 35 %                |
-| **Verts/ALE**       | 24,3 % / 25,5 %                                     | 29 % / 33 %                                             | 68 % / 73 %                             | 32 % / 15 %                |
+| **Parti politique** | **Meilleur résultat DEFT 2009 (Rappel / Précision)** | **Performance annotateurs humains (Rappel / Précision)** | **Baseline TF-IDF (Rappel / Précision)** | **LDA (Rappel / Précision)** | **XGBoost Word2Vec (Rappel/Précision)** |
+|----------------------|-----------------------------------------------------|---------------------------------------------------------|-----------------------------------------|-----------------------------|---------------------------------|
+| **ELDR**            | 23,1 % / 23,6 %                                     | 33 % / 42 %                                             | 67 % / 78 %                             | 8 % / 15 %                 | 57.7 % / 0.41                   |
+| **GUE-NGL**         | 39,3 % / 34,5 %                                     | 42 % / 44 %                                             | 80 % / 70 %                             | 58 % / 21 %                | 49.1 % / 0.58                  |
+| **PPE-DE**          | 49,8 % / 45,2 %                                     | 57 % / 40 %                                             | 74 % / 75 %                             | 21 % / 43 %                | 88.0 % / 0.64                   |
+| **PSE**             | 39,4 % / 37,0 %                                     | 63 % / 48 %                                             | 72 % / 69 %                             | 15 % / 35 %                | 53.3 % / 0.57                   |
+| **Verts/ALE**       | 24,3 % / 25,5 %                                     | 29 % / 33 %                                             | 68 % / 73 %                             | 32 % / 15 %                | 19.0 % / 0.31                   |
+
+### Description
+Ce tableau résume les performances de différents modèles et méthodes appliquées pour la classification de partis politiques. Il compare les résultats obtenus par différentes approches de traitement de texte (DEFT 2009, annotateurs humains, TF-IDF, LDA, et XGBoost avec Word2Vec) en termes de rappel et de précision.
+
+- **Meilleur résultat DEFT 2009** : Résultats obtenus par le modèle DEFT 2009 sur les données de test.
+- **Performance annotateurs humains** : Précision et rappel fournis par des annotateurs humains sur les mêmes données.
+- **Baseline TF-IDF** : Résultats obtenus en utilisant des caractéristiques TF-IDF pour la classification.
+- **LDA** : Modèle Latent Dirichlet Allocation pour la représentation des documents.
+- **XGBoost Word2Vec** : Performances obtenues avec un modèle XGBoost entraîné avec des embeddings Word2Vec.
 
 ## Interprétation des résultats(a faire)
 
