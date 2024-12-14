@@ -56,27 +56,31 @@ L'approche proposée pendant la campagne DEFT 2009 pour la tâche de prédiction
 En conclusion, bien que l'approche ait montré de bons résultats en phase d'apprentissage, elle a souffert de problèmes de généralisation lors de la phase de test, principalement dus au surapprentissage.
 
 
-#### Méthodologie
-
-
-
-
-#### Faiblesses
-1. **Dépendance au volume de données :**
-    - Performances faibles pour les partis moins représentés (**ELDR** et **Verts/ALE**).
-2. **Simplicité des caractéristiques :**
-    - Manque de profondeur pour capturer les nuances linguistiques et contextuelles.
-3. **Conflits idéologiques et ambiguïtés :**
-    - Les confusions étaient fréquentes entre certains partis proches idéologiquement (par exemple, PSE et PPE-DE).
 ## Représentation par espaces de thèmes (LDA)
 
-### Justification
-- Entraînement d’un modèle LDA pour explorer la thématique des discours.
-- Les distributions de thèmes sont intégrées comme nouvelles caractéristiques.
+# Analyse des Hyperparamètres
 
-### Paramètres et implémentation
-- **Nombre de thèmes :** Optimisé pour refléter les différents partis.
-- **Alpha, Beta :** Ajustés pour favoriser la spécificité des thèmes.
+## 1. **CountVectorizer**
+Le `CountVectorizer` est utilisé pour transformer les documents en matrices de comptage de mots, avec les hyperparamètres suivants :
+- **`max_df=0.95`** : Ignore les mots qui apparaissent dans plus de 95% des documents, afin de se concentrer sur les termes discriminants.
+- **`min_df=2`** : Ne garde que les mots qui apparaissent dans au moins 2 documents, ce qui permet de réduire le bruit.
+- **`stop_words=french_stop_words`** : Supprime les mots vides (comme "le", "la", etc.) qui n'apportent pas de valeur discriminante.
+
+## 2. **Latent Dirichlet Allocation (LDA)**
+LDA est utilisé pour extraire des thèmes à partir des documents. Les paramètres définis sont :
+- **`n_components=5`** : Le nombre de thèmes à identifier dans les documents (ici, 5 thèmes).
+- **`doc_topic_prior=1.0`** : Ce paramètre uniformise la répartition des thèmes dans chaque document.
+- **`topic_word_prior=0.8`** : Permet une certaine diversité dans les mots associés aux thèmes, évitant une trop forte concentration sur quelques mots spécifiques.
+
+## 3. **SVC (Support Vector Classifier)**
+Le classifieur SVM est utilisé pour la classification finale des documents avec les paramètres suivants :
+- **`kernel='rbf'`** : Utilise un noyau Radial Basis Function (RBF), qui est adapté pour traiter des données non linéaires.
+- **`class_weight='balanced'`** : Ajuste les poids des classes pour compenser un éventuel déséquilibre entre les classes cibles.
+
+## Conclusion
+Les hyperparamètres choisis pour la vectorisation des textes, la modélisation thématique avec LDA et la classification avec SVM influencent grandement la performance du modèle. En ajustant ces paramètres, on peut améliorer la précision, la pertinence des classifications et gérer les données déséquilibrées de manière efficace.
+
+
 
 
 
