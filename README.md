@@ -48,8 +48,7 @@ L'équipe de l'Université de Montréal a utilisé une approche supervisée :
 2. **Simplicité des caractéristiques :**
     - Manque de profondeur pour capturer les nuances linguistiques et contextuelles.
 3. **Conflits idéologiques et ambiguïtés :**
-    - Confusions fréquentes entre partis proches (é.g., **PSE** et **GUE-NGL**, ou **PPE-DE** et **ELDR**).
-
+    - Les confusions étaient fréquentes entre certains partis proches idéologiquement (par exemple, PSE et PPE-DE).
 ## Représentation par espaces de thèmes (LDA)
 
 ### Justification
