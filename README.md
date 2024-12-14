@@ -24,22 +24,41 @@
 
 ### Approche adoptée pour la Tâche 3 : Détermination du parti politique
 
-#### Méthodologie
-L'équipe de l'Université de Montréal a utilisé une approche supervisée :
-1. **Extraction des caractéristiques textuelles :**
-    - Représentation des discours sous forme de vecteurs basés sur :
-        - La fréquence des mots.
-        - Les expressions spécifiques aux partis politiques.
-        - Les méta-informations (longueur des discours, mots-clés).
-2. **Classification supervisée :**
-    - Utilisation d’un algorithme de classification avec un corpus d’apprentissage annoté.
-    - Équilibrage des données pour les cinq partis principaux : **PPE-DE, PSE, GUE-NGL, ELDR et Verts/ALE**.
-3. **Évaluation :**
-    - Mesure des performances en termes de rappel, précision et F-mesure sur un corpus test.
+L'approche proposée pendant la campagne DEFT 2009 pour la tâche de prédiction du parti politique se décompose en plusieurs étapes clés, principalement centrées sur l'expérimentation avec les paramètres du modèle et les algorithmes de classification. 
 
-#### Forces
-2. **Approche centrée sur les principaux partis :**
-    - Réduction de la complexité en se concentrant sur les groupes avec des exemples suffisants.
+#### Phase d'apprentissage :
+- **Paramètres d'expérimentation :**
+  - Le nombre de traits discriminants variait entre 1 000 et 20 000 mots, avec des incréments de 1 000 ou 5 000 mots.
+  - Les mots sont représentés par leur fréquence ou leur fréquence pondérée par l'IDF (Inverse Document Frequency).
+  - Les algorithmes utilisés étaient les k plus proches voisins (k=1, k=2, k=3, k=4, k=5) et le classifieur bayésien naïf.
+  
+- **Meilleures performances :**
+  - Les meilleurs résultats ont été obtenus en utilisant 10 000 mots discriminants, représentés par leur fréquence, et l'algorithme des k plus proches voisins avec k=2. Cette configuration a permis d'atteindre un taux de rappel de 94,12% et un taux de précision de 94,53%.
+
+- **Pires performances :**
+  - Les pires performances ont été observées avec 100 mots discriminants, ce qui a donné un taux de rappel de 33,57% et un taux de précision de 36,34%.
+
+#### Phase de test :
+- **Exécutions de test :**
+  - Trois exécutions ont été réalisées avec des variations dans le nombre de traits discriminants et la valeur du paramètre k. 
+  - Les résultats des tests montrent des performances globales faibles par rapport à la phase d'apprentissage, avec des taux de rappel et de précision autour de 33%. 
+  - Les meilleures performances pour la catégorie PPE-DE ont atteint un rappel de 49,80% et une précision de 45,20%.
+
+#### Forces :
+- L'algorithme des k plus proches voisins a montré de bonnes performances globales, surtout pour les valeurs faibles de k (k=1 ou k=2).
+- L'utilisation de 10 000 mots discriminants a permis d'obtenir de très bons résultats lors de la phase d'apprentissage.
+
+#### Faiblesses :
+- Les performances de la phase de test sont nettement inférieures à celles de la phase d'apprentissage, ce qui suggère un surapprentissage (overfitting) des modèles.
+- Le filtrage des mots discriminants pendant l'apprentissage n’a pas permis de maintenir les performances lors des tests, certains mots discriminants devenant moins efficaces dans les données de test.
+- Le classifieur bayésien naïf s’est avéré moins performant que l'algorithme des k plus proches voisins pour cette tâche.
+
+En conclusion, bien que l'approche ait montré de bons résultats en phase d'apprentissage, elle a souffert de problèmes de généralisation lors de la phase de test, principalement dus au surapprentissage.
+
+
+#### Méthodologie
+
+
 
 
 #### Faiblesses
