@@ -17,9 +17,6 @@
   - **SVM** comme classifieur principal.
 - Processus : extraction des caractéristiques (TF-IDF), entraînement sur un corpus annoté, évaluation sur un corpus test.
 
-### Résultats baseline
-- La baseline a montré des performances modestes avec une F-mesure globale inférieure à 35 %.
-
 ## Analyse de l’approche de DEFT 2009
 
 ### Approche adoptée pour la Tâche 3 : Détermination du parti politique
