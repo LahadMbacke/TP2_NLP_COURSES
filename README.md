@@ -8,9 +8,6 @@
 
 ## Mise en place du système baseline
 
-### Représentation des documents
-- Utilisation de la méthode **TF-IDF** pour représenter les discours parlementaires sous forme de vecteurs de poids.
-
 ### Pipeline
 - Outils : 
   - **Scikit-learn** pour l’implémentation.
@@ -53,11 +50,11 @@ L'approche proposée pendant la campagne DEFT 2009 pour la tâche de prédiction
 En conclusion, bien que l'approche ait montré de bons résultats en phase d'apprentissage, elle a souffert de problèmes de généralisation lors de la phase de test, principalement dus au surapprentissage.
 
 
-## Représentation par espaces de thèmes (LDA)
+# Représentation par espaces de thèmes (LDA)
 
-# Analyse des Hyperparamètres
+## Analyse des Hyperparamètres
 
-## 1. **CountVectorizer**
+### 1. **CountVectorizer**
 Le `CountVectorizer` est utilisé pour transformer les documents en matrices de comptage de mots, avec les hyperparamètres suivants :
 - **`max_df=0.95`** : Ignore les mots qui apparaissent dans plus de 95% des documents, afin de se concentrer sur les termes discriminants.
 - **`min_df=2`** : Ne garde que les mots qui apparaissent dans au moins 2 documents, ce qui permet de réduire le bruit.
@@ -74,26 +71,28 @@ Le classifieur SVM est utilisé pour la classification finale des documents avec
 - **`kernel='rbf'`** : Utilise un noyau Radial Basis Function (RBF), qui est adapté pour traiter des données non linéaires.
 - **`class_weight='balanced'`** : Ajuste les poids des classes pour compenser un éventuel déséquilibre entre les classes cibles.
 
-## Conclusion
-Les hyperparamètres choisis pour la vectorisation des textes, la modélisation thématique avec LDA et la classification avec SVM influencent grandement la performance du modèle. En ajustant ces paramètres, on peut améliorer la précision, la pertinence des classifications et gérer les données déséquilibrées de manière efficace.
-
-
-
-
 
 ## Variations et optimisations
 
 ### Approches explorées
 1. **Optimisation des hyper-paramètres LDA :** Amélioration de la séparation thématique.
 2. **Pré-traitement :** 
-    -On a pas utiliser un pretraitement car ca degrade les results
+    ### Tests effectués :  
+1. **Lemmatisation** :  
+   - Résultat : Perte de précision, probablement liée à la simplification excessive des termes spécifiques aux débats parlementaires.  
+
+2. **Suppression des stopwords** :  
+   - Résultat : Réduction des informations pertinentes, notamment les termes fonctionnels qui jouent un rôle discriminant dans les discours politiques.  
+
+3. **Conversion en minuscules** :  
+   - Résultat : Impact limité mais négatif, probablement dû à la perte de distinction entre noms propres et autres termes.  
 
 ### Analyse des performances
 
 
 ## Tableau comparatif des performances
 
-| **Parti politique** | **Meilleur résultat DEFT 2009 (Rappel / Précision)** | **Performance annotateurs humains (Rappel / Précision)** | **Baseline TF-IDF (Rappel / Précision)** | **LDA déséquilibré (Rappel / Précision)** | **LDA équilibré (Rappel / Précision)** | **XGBoost Word2Vec (Rappel/Précision)** |
+| **Parti politique** | **Meilleur résultat DEFT 2009 (Rappel / Précision)** | **Performance annotateurs humains (Rappel / Précision)** | **Baseline TF-IDF (Rappel / Précision)** | **LDA  (Rappel / Précision)** | **LDA équilibré (Rappel / Précision)** | **XGBoost Word2Vec (Rappel/Précision)** |
 |----------------------|-----------------------------------------------------|---------------------------------------------------------|-----------------------------------------|-----------------------------------------|-----------------------------------------|-----------------------------------------|
 | **ELDR**            | 23,1 % / 23,6 %                                     | 33 % / 42 %                                             | 67 % / 78 %                             | 8 % / 15 %                              | 18 % / 27 %                             | 24 % / 90 %                         |
 | **GUE-NGL**         | 39,3 % / 34,5 %                                     | 42 % / 44 %                                             | 80 % / 70 %                             | 58 % / 21 %                             | 62 % / 37 %                             | 45 % / 71 %                         |
@@ -101,19 +100,39 @@ Les hyperparamètres choisis pour la vectorisation des textes, la modélisation 
 | **PSE**             | 39,4 % / 37,0 %                                     | 63 % / 48 %                                             | 72 % / 69 %                             | 15 % / 35 %                             | 24 % / 27 %                             | 54 % / 63 %                         |
 | **Verts/ALE**       | 24,3 % / 25,5 %                                     | 29 % / 33 %                                             | 68 % / 73 %                             | 32 % / 15 %                             | 28 % / 27 %                             | 20 % / 96 %                         |
 
-### Description
-Ce tableau résume les performances de différents modèles et méthodes appliquées pour la classification de partis politiques. Il compare les résultats obtenus par différentes approches de traitement de texte (DEFT 2009, annotateurs humains, TF-IDF, LDA, et XGBoost avec Word2Vec) en termes de rappel et de précision.
 
-- **Meilleur résultat DEFT 2009** : Résultats obtenus par le modèle DEFT 2009 sur les données de test.
-- **Performance annotateurs humains** : Précision et rappel fournis par des annotateurs humains sur les mêmes données.
-- **Baseline TF-IDF** : Résultats obtenus en utilisant des caractéristiques TF-IDF pour la classification.
-- **LDA** : Modèle Latent Dirichlet Allocation pour la représentation des documents.
-- **XGBoost Word2Vec** : Performances obtenues avec un modèle XGBoost entraîné avec des embeddings Word2Vec.
+## Variations des approches
 
-## Interprétation des résultats(a faire)
+### 1. **XGBoost Word2Vec**
+- Nous avons exploré l'utilisation des embeddings **Word2Vec** pour représenter les documents parlementaires. 
+- Ces embeddings sont ensuite utilisés comme entrée dans un classifieur **XGBoost**, qui combine robustesse et adaptabilité pour capturer des relations complexes dans les données.  
+
+### 2. **LDA équilibré**
+- Contrairement à l'approche standard, nous avons modifié les données d'entraînement et de test pour obtenir un corpus **équilibré** en termes de représentation des partis politiques.  
+- Cette méthode vise à atténuer l'impact des classes majoritaires sur les performances globales, en fournissant un volume de données comparable pour chaque parti politique.
+
+### Analyse détaillée
+
+#### 1. **ELDR**  
+- **XGBoost Word2Vec** offre une précision exceptionnelle (90 %), mais un rappel faible (24 %), suggérant une identification très sûre de certains discours, mais une couverture limitée.  
+- **Baseline TF-IDF** propose un équilibre solide (67 % / 78 %), ce qui en fait une méthode plus fiable pour ce parti.  
+
+#### 2. **GUE-NGL**  
+- La **baseline TF-IDF** atteint les meilleurs résultats (80 % / 70 %), équilibrant rappel et précision.  
+- **LDA équilibré** montre une légère amélioration par rapport à LDA déséquilibré, mais reste inférieur à TF-IDF, indiquant une faiblesse des modèles thématiques pour ce parti.  
+
+#### 3. **PPE-DE**  
+- Les meilleures performances en rappel proviennent de **XGBoost Word2Vec** (88 %), mais avec une précision moyenne (51 %), ce qui montre une forte sur-représentation de ce parti dans les prédictions.  
+- **Baseline TF-IDF** maintient un excellent équilibre (74 % / 75 %), surpassant les autres méthodes.  
+
+#### 4. **PSE**  
+- La **baseline TF-IDF** performe le mieux (72 % / 69 %), avec des scores stables et équilibrés.  
+- **LDA**, même avec équilibrage, reste peu performant avec un rappel bas (15 % à 24 %).  
+
+#### 5. **Verts/ALE**  
+- **XGBoost Word2Vec** atteint une précision remarquable (96 %), mais un rappel très faible (20 %), indiquant une identification précise de certains discours, mais une incapacité à généraliser.  
+- La **baseline TF-IDF** (68 % / 73 %) offre une solution plus homogène et fiable.  
 
 
-## Conclusion
-
-La tâche 3 de DEFT 2009 illustre les limites des systèmes automatiques et les défis liés à l’analyse du langage politique. 
-Des méthodes avancées, telles que l’utilisation de modèles pré-entraînés (BERT, GPT), et un corpus mieux équilibré pourraient significativement améliorer les performances.
+### Perspectives  
+Pour améliorer les performances, des approches modernes comme les modèles pré-entraînés (BERT, GPT) ou une meilleure gestion du déséquilibre des données devraient être explorées.
