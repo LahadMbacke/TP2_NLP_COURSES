@@ -51,7 +51,8 @@ En conclusion, bien que l'approche ait montré de bons résultats en phase d'app
 
 
 # Représentation par espaces de thèmes (LDA)
-
+## Choix du Corpus
+Le corpus choisi remplit parfaitement les critères nécessaires pour entraîner un modèle LDA efficace. Il capture la diversité des opinions politiques, reflétant ainsi les différences idéologiques entre les partis, tout en étant représentatif du contexte linguistique des documents de test, grâce à des textes en français issus de discours et débats parlementaires. Ce corpus couvre une large variété de sujets, tels que l’économie, la santé ou l’environnement, garantissant des thèmes latents pertinents et diversifiés. De plus, son volume important, composé de plusieurs milliers de documents, permet de modéliser des thèmes cohérents et fiables, tout en respectant le style formel caractéristique des textes politiques.
 ## Analyse des Hyperparamètres
 
 ### 1. **CountVectorizer**
