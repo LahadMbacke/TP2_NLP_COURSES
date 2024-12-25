@@ -136,3 +136,6 @@ Le classifieur SVM est utilisé pour la classification finale des documents avec
 
 ### Perspectives  
 Pour améliorer les performances, des approches modernes comme les modèles pré-entraînés (BERT, GPT) ou une meilleure gestion du déséquilibre des données devraient être explorées.
+### References
+- https://deft.lisn.upsaclay.fr/actes/actes_deft2009.pdf
+- https://deft.lisn.upsaclay.fr/actes/2009/pdf/0_grouin.pdf
