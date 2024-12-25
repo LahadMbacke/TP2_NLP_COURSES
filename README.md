@@ -12,7 +12,6 @@
 - Outils : 
   - **Scikit-learn** pour l’implémentation.
   - **SVM** comme classifieur principal.
-- Processus : extraction des caractéristiques (TF-IDF), entraînement sur un corpus annoté, évaluation sur un corpus test.
 
 ## Analyse de l’approche de DEFT 2009
 
