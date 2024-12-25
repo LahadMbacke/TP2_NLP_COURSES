@@ -62,9 +62,18 @@ Le `CountVectorizer` est utilisé pour transformer les documents en matrices de 
 
 ## 2. **Latent Dirichlet Allocation (LDA)**
 LDA est utilisé pour extraire des thèmes à partir des documents. Les paramètres définis sont :
-- **`n_components=5`** : Le nombre de thèmes à identifier dans les documents (ici, 5 thèmes).
-- **`doc_topic_prior=1.0`** : Ce paramètre uniformise la répartition des thèmes dans chaque document.
-- **`topic_word_prior=0.8`** : Permet une certaine diversité dans les mots associés aux thèmes, évitant une trop forte concentration sur quelques mots spécifiques.
+1. **Nombre de thèmes (`n_components`)**  
+   Définit le nombre de thèmes latents à découvrir. Ce paramètre doit être ajusté en fonction de la diversité sémantique du corpus. 
+2. **Alpha (`doc_topic_prior`)**  
+   Influence la distribution des thèmes sur chaque document :  
+   - **Petite valeur** : Les documents se concentrent sur un petit nombre de thèmes.  
+   - **Grande valeur** : Chaque document peut couvrir un plus large éventail de thèmes.
+3. **Beta (`topic_word_prior`)**  
+   Contrôle la distribution des mots sur chaque thème :  
+   - **Petite valeur** : Chaque thème est défini par un petit nombre de mots-clés.  
+   - **Grande valeur** : Les thèmes incluent un vocabulaire plus large et équilibré.
+4. **Nombre d’itérations (`max_iter`)**  
+   Définit le nombre maximal d’itérations pour optimiser les distributions de thèmes. Un nombre plus élevé peut améliorer la convergence au détriment du temps de calcul.
 
 ## 3. **SVC (Support Vector Classifier)**
 Le classifieur SVM est utilisé pour la classification finale des documents avec les paramètres suivants :
