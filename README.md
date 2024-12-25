@@ -77,20 +77,12 @@ Le classifieur SVM est utilisé pour la classification finale des documents avec
 ### Approches explorées
 1. **Optimisation des hyper-paramètres LDA :** Amélioration de la séparation thématique.
 2. **Pré-traitement :** 
-    ### Tests effectués :  
-1. **Lemmatisation** :  
-   - Résultat : Perte de précision, probablement liée à la simplification excessive des termes spécifiques aux débats parlementaires.  
+Nous avons effectué un pré-traitement des textes, mais cela a dégradé les résultats. Nous avons donc décidé de ne pas utiliser de pré-traitement.
 
-2. **Suppression des stopwords** :  
-   - Résultat : Réduction des informations pertinentes, notamment les termes fonctionnels qui jouent un rôle discriminant dans les discours politiques.  
-
-3. **Conversion en minuscules** :  
-   - Résultat : Impact limité mais négatif, probablement dû à la perte de distinction entre noms propres et autres termes.  
-
-### Analyse des performances
+## Analyse des performances
 
 
-## Tableau comparatif des performances
+### Tableau comparatif des performances
 
 | **Parti politique** | **Meilleur résultat DEFT 2009 (Rappel / Précision)** | **Performance annotateurs humains (Rappel / Précision)** | **Baseline TF-IDF (Rappel / Précision)** | **LDA  (Rappel / Précision)** | **LDA équilibré (Rappel / Précision)** | **XGBoost Word2Vec (Rappel/Précision)** |
 |----------------------|-----------------------------------------------------|---------------------------------------------------------|-----------------------------------------|-----------------------------------------|-----------------------------------------|-----------------------------------------|
