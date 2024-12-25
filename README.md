@@ -108,7 +108,7 @@ Le classifieur SVM est utilisé pour la classification finale des documents avec
 - Nous avons exploré l'utilisation des embeddings **Word2Vec** pour représenter les documents parlementaires. 
 - Ces embeddings sont ensuite utilisés comme entrée dans un classifieur **XGBoost**, qui combine robustesse et adaptabilité pour capturer des relations complexes dans les données.  
 
-### 2. **LDA équilibré**
+### 2. **LDA avec des donnees équilibré**
 - Contrairement à l'approche standard, nous avons modifié les données d'entraînement et de test pour obtenir un corpus **équilibré** en termes de représentation des partis politiques.  
 - Cette méthode vise à atténuer l'impact des classes majoritaires sur les performances globales, en fournissant un volume de données comparable pour chaque parti politique.
 
